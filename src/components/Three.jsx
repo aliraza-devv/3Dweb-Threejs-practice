@@ -4,10 +4,11 @@ import { Environment, OrbitControls, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import gsap from 'gsap';
+import Car from "./car";
 
 const Three = () => {
   const orbitControlsRef = useRef(null);
-  
+
   useFrame((state) => {
     if(!!orbitControlsRef.current){
       const {x,y} = state.mouse
@@ -49,6 +50,8 @@ const ballRef = useRef(null)
       <sphereGeometry args={[0.5,32,32]} />
       <meshStandardMaterial color="#ffffff" metalness={0.6} roughness={0.2}/>
     </mesh>
+    {/* Car */}
+    <Car />
     {/* Floor */}
     <mesh rotation={[-(agnleToRadian(90)), 0, 0]} receiveShadow>
       <planeGeometry args={[20, 20]} />
