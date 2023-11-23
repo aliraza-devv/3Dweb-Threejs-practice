@@ -5,9 +5,15 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import gsap from 'gsap';
 import Car from "./car";
+import MyText from "./MyText";
 
 const Three = () => {
   const orbitControlsRef = useRef(null);
+
+  const myStyle = {
+    fontWeight: '700',
+    fontSize: '18px',
+    };
 
   useFrame((state) => {
     if(!!orbitControlsRef.current){
@@ -43,8 +49,11 @@ const ballRef = useRef(null)
   return (
     <>
     {/* Camera */}
-    <perspectiveCamera makeDefault position={[0,1,5]} />
+    <perspectiveCamera makeDefault position={[3,3,5]} />
     <OrbitControls ref={orbitControlsRef} minPolarAngle={agnleToRadian(40)} maxPolarAngle={agnleToRadian(80)}/>
+    <MyText color="white" fontSize={1} position={[0, 2, 0]}>
+        Hello, World!
+    </MyText>
     {/* Ball */}
     <mesh position={[-2,2.5,0]} castShadow ref={ballRef}>
       <sphereGeometry args={[0.5,32,32]} />
@@ -55,7 +64,7 @@ const ballRef = useRef(null)
     {/* Floor */}
     <mesh rotation={[-(agnleToRadian(90)), 0, 0]} receiveShadow>
       <planeGeometry args={[20, 20]} />
-      <meshStandardMaterial color="#1ea3d8" />
+      <meshStandardMaterial color="#0096c7" />
     </mesh>
     {/* Lights */}
     <ambientLight args={["#ffffff", 0.25]} />
@@ -64,7 +73,7 @@ const ballRef = useRef(null)
     <Environment background>
       <mesh>
           <sphereGeometry args={[50, 100, 100]} />
-          <meshBasicMaterial color="#2266cc" side={THREE.BackSide} />
+          <meshBasicMaterial color="#0096c7" side={THREE.BackSide} />
       </mesh>
     </Environment>
     </>
